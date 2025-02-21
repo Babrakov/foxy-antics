@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=4 uid="uid://c7x1dn4kbv5mo"]
+[gd_scene load_steps=5 format=4 uid="uid://c7x1dn4kbv5mo"]
 
 [ext_resource type="Texture2D" uid="uid://uwb5aj2tw8ox" path="res://assets/tiles/Terrain (16x16).png" id="1_6hlfd"]
+[ext_resource type="PackedScene" uid="uid://ddyxjacy8ysug" path="res://scenes/player/player.tscn" id="2_dcvnc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oavpr"]
 texture = ExtResource("1_6hlfd")
@@ -163,3 +164,6 @@ tile_set = SubResource("TileSet_lvjrd")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(256, -150)
 zoom = Vector2(2, 2)
+
+[node name="Player" parent="." instance=ExtResource("2_dcvnc")]
+position = Vector2(92, -41)
