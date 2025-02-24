@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddyxjacy8ysug"]
+[gd_scene load_steps=12 format=3 uid="uid://ddyxjacy8ysug"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_uo8s7"]
 [ext_resource type="Texture2D" uid="uid://b5xh4bueuue44" path="res://assets/player/player.png" id="1_wf4ss"]
+[ext_resource type="PackedScene" uid="uid://b6ox8oex5rca3" path="res://scenes/player_camera/player_camera.tscn" id="3_2kogi"]
 
 [sub_resource type="Animation" id="Animation_fl647"]
 length = 0.001
@@ -137,3 +138,5 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_wjub8")
+
+[node name="PlayerCamera" parent="." instance=ExtResource("3_2kogi")]
