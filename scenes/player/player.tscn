@@ -140,3 +140,14 @@ position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_wjub8")
 
 [node name="PlayerCamera" parent="." instance=ExtResource("3_2kogi")]
+
+[node name="DebugLabel" type="Label" parent="."]
+offset_left = -16.0
+offset_top = -60.0
+offset_right = 197.0
+offset_bottom = 210.0
+scale = Vector2(0.17801, 0.17801)
+theme_override_font_sizes/font_size = 64
+text = "kuygh\\
+gdsgsd
+gsd"
