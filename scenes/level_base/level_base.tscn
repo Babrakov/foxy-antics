@@ -230,7 +230,7 @@ tile_set = SubResource("TileSet_lvjrd")
 position = Vector2(106, -170)
 
 [node name="BulletPlayer" parent="." instance=ExtResource("3_r6wah")]
-position = Vector2(50, -38)
+position = Vector2(134, -33)
 
 [node name="BulletEnemy" parent="." instance=ExtResource("4_mp0n0")]
-position = Vector2(151, -36)
+position = Vector2(56, -32)
