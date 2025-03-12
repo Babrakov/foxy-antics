@@ -7,10 +7,11 @@ const GRAVITY: float = 690.0
 const RUN_SPEED: float = 120.0
 const MAX_FALL: float = 400.0
 const JUMP_VELOCITY: float = -260.0
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var debug_label: Label = $DebugLabel
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var shooter: Shooter = $Shooter
 
 var _state: PlayerState = PlayerState.IDLE
 
@@ -27,6 +28,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	calculate_states()
 	update_debug_label()
+	
+	if Input.is_action_just_pressed("shoot"):
+		shoot()       
 
 func update_debug_label() -> void:
 	debug_label.text = "floor:%s\n%s\nvel(%.0f,%.0f)" % [
@@ -34,6 +38,13 @@ func update_debug_label() -> void:
 		PlayerState.keys()[_state],
 		velocity.x, velocity.y
 	]
+
+func shoot() -> void:
+	if sprite_2d.flip_h:
+		shooter.shoot(Vector2.LEFT)
+	else:
+		shooter.shoot(Vector2.RIGHT)
+	
 
 func get_input() -> void:
 	velocity.x = 0

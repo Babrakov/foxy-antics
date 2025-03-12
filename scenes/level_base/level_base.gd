@@ -8,11 +8,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("shoot"):
-		SignalManager.on_create_bullet.emit(
-			Vector2(70,-70),
-			Vector2(50,-50),
-			3.0,
-			1.0,
-			Constants.ObjectType.BULLET_PLAYER
-		)
+	pass
+	#if Input.is_action_just_pressed("shoot"):
+		#SignalManager.on_create_bullet.emit(
+			#Vector2(70,-70),
+			#Vector2(50,-50),
+			#3.0,
+			#1.0,
+			#Constants.ObjectType.BULLET_PLAYER
+		#)
