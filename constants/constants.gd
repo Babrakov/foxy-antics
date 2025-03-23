@@ -1,7 +1,7 @@
 class_name Constants
 
 enum ObjectType {
-	EXOLSION,
+	EXPLOSION,
 	PICKUP,
 	BULLET_PLAYER,
 	BULLET_ENEMY
