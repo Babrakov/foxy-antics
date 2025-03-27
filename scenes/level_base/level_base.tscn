@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://c7x1dn4kbv5mo"]
+[gd_scene load_steps=12 format=4 uid="uid://c7x1dn4kbv5mo"]
 
 [ext_resource type="Texture2D" uid="uid://uwb5aj2tw8ox" path="res://assets/tiles/Terrain (16x16).png" id="1_6hlfd"]
 [ext_resource type="Script" path="res://scenes/level_base/level_base.gd" id="1_s7adv"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c2qt26b34s5e2" path="res://scenes/object_maker/object_maker.tscn" id="5_ijcc6"]
 [ext_resource type="PackedScene" uid="uid://bw5wbrq5gg2ng" path="res://scenes/enemies/frog.tscn" id="6_jamsc"]
 [ext_resource type="PackedScene" uid="uid://dplhqmo21pa0r" path="res://scenes/enemies/eagle.tscn" id="7_414nb"]
+[ext_resource type="PackedScene" uid="uid://cqdlc1oojtjwa" path="res://scenes/ball_spikes/ball_spikes.tscn" id="8_saesu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oavpr"]
 texture = ExtResource("1_6hlfd")
@@ -233,6 +234,12 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_oavpr")
 
+[sub_resource type="Curve2D" id="Curve2D_rgpy4"]
+_data = {
+"points": PackedVector2Array(-18.5206, 35.3576, 18.5206, -35.3576, -45, -269, -40.9699, -8.41846, 40.9699, 8.41846, 101, -280, 2.80615, -28.3422, -2.80615, 28.3422, 167, -231, 48.1758, 2.86915, -48.1758, -2.86915, 88, -188, 41.2505, 21.6074, -41.2505, -21.6074, -4, -209, -6.17354, 35.9188, 6.17354, -35.9188, -45, -269)
+}
+point_count = 6
+
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_s7adv")
 
@@ -243,14 +250,14 @@ tile_map_data = PackedByteArray("AAAAAP//AAAGAAAAAAABAP//AAAGAAAAAAACAP//AAAGAAA
 tile_set = SubResource("TileSet_lvjrd")
 
 [node name="Player" parent="." instance=ExtResource("2_dcvnc")]
-position = Vector2(106, -170)
+position = Vector2(100, -101)
 
 [node name="ObjectMaker" parent="." instance=ExtResource("5_ijcc6")]
 
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Snail" parent="Enemies" instance=ExtResource("5_c2utq")]
-position = Vector2(308, -67)
+position = Vector2(329, -25)
 speed = 20.0
 
 [node name="Frog" parent="Enemies" instance=ExtResource("6_jamsc")]
@@ -258,3 +265,11 @@ position = Vector2(-189, -168)
 
 [node name="Eagle" parent="Enemies" instance=ExtResource("7_414nb")]
 position = Vector2(384, -260)
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_rgpy4")
+
+[node name="BallSpikes" parent="Paths/Path2D" instance=ExtResource("8_saesu")]
+position = Vector2(-45, -269)
