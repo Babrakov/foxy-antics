@@ -7,6 +7,7 @@ const GRAVITY: float = 690.0
 const RUN_SPEED: float = 120.0
 const MAX_FALL: float = 400.0
 const JUMP_VELOCITY: float = -260.0
+const HURT_JUMP_VELOCITY: Vector2 = Vector2(0,-130.0)
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var debug_label: Label = $DebugLabel
@@ -14,7 +15,8 @@ const JUMP_VELOCITY: float = -260.0
 @onready var shooter: Shooter = $Shooter
 @onready var invincible_timer: Timer = $InvincibleTimer
 @onready var invincible_player: AnimationPlayer = $InvinciblePlayer
- 
+@onready var hurt_timer: Timer = $HurtTimer
+
 var _state: PlayerState = PlayerState.IDLE
 var _invincible: bool = false
 
@@ -51,6 +53,9 @@ func shoot() -> void:
 	
 
 func get_input() -> void:
+	if _state == PlayerState.HURT:
+		return
+		 
 	velocity.x = 0
 	if Input.is_action_pressed("left") == true:
 		velocity.x = -RUN_SPEED
@@ -79,9 +84,14 @@ func set_state(new_state: PlayerState) -> void:
 			animation_player.play("jump")
 		PlayerState.FALL:
 			animation_player.play("fall")
+		PlayerState.HURT:
+			apply_hurt_jump()
 
 
 func calculate_states() -> void:
+	if _state == PlayerState.HURT:
+		return
+	
 	if is_on_floor() == true:
 		if velocity.x == 0:
 			set_state(PlayerState.IDLE)
@@ -98,10 +108,16 @@ func go_invincible() -> void:
 	invincible_player.play("invincible")
 	invincible_timer.start()
 
+func apply_hurt_jump() -> void:
+	animation_player.play("hurt")
+	velocity = HURT_JUMP_VELOCITY
+	hurt_timer.start()
+
 func apply_hit() -> void:
 	if _invincible == true:
 		return
 	go_invincible()
+	set_state(PlayerState.HURT)
 
 func _on_invincible_timer_timeout() -> void:
 	_invincible = false
@@ -109,3 +125,7 @@ func _on_invincible_timer_timeout() -> void:
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	apply_hit() 
+
+
+func _on_hurt_timer_timeout() -> void:
+	set_state(PlayerState.IDLE)
