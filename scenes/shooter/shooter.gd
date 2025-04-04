@@ -28,6 +28,7 @@ func shoot(direction: Vector2) -> void:
 		bullet_key
 	) 
 	shoot_timer.start()
+	SoundManager.play_clip(sound, SoundManager.SOUND_LASER)
 
 
 func _on_shoot_timer_timeout() -> void:
