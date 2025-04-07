@@ -21,12 +21,14 @@ const HURT_JUMP_VELOCITY: Vector2 = Vector2(0,-130.0)
 
 var _state: PlayerState = PlayerState.IDLE
 var _invincible: bool = false
-var _lives: int = 5
+var _lives: int = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	call_deferred("late_setup")
 
+func late_setup() -> void:
+	SignalManager.on_game_started.emit(_lives)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
