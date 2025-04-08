@@ -21,7 +21,7 @@ const HURT_JUMP_VELOCITY: Vector2 = Vector2(0,-130.0)
 
 var _state: PlayerState = PlayerState.IDLE
 var _invincible: bool = false
-var _lives: int = 3
+var _lives: int = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -125,6 +125,8 @@ func reduce_lives(reduction: int) -> bool:
 	if _lives <= 0:
 		SignalManager.on_game_over.emit()
 		set_physics_process(false)
+		animation_player.stop()
+		invincible_player.stop()
 		print("Game over")
 		return false
 	return true
