@@ -1,5 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://ctbg6agj8i1s2"]
+[gd_scene load_steps=23 format=3 uid="uid://ctbg6agj8i1s2"]
 
+[ext_resource type="Script" path="res://scenes/boss/boss.gd" id="1_1lgbu"]
 [ext_resource type="Texture2D" uid="uid://bi46gwvipxp5j" path="res://assets/enemies/boss/boss.png" id="1_08d3h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_spv2p"]
@@ -189,6 +190,7 @@ states/pulse/position = Vector2(594, 100)
 transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_i7fv0"), "RESET", "arrive", SubResource("AnimationNodeStateMachineTransition_c8wmj"), "arrive", "pulse", SubResource("AnimationNodeStateMachineTransition_brxso"), "pulse", "attack", SubResource("AnimationNodeStateMachineTransition_2owk8"), "attack", "pulse", SubResource("AnimationNodeStateMachineTransition_d0oy1"), "hit", "pulse", SubResource("AnimationNodeStateMachineTransition_k72cw")]
 
 [node name="Boss" type="Node2D"]
+script = ExtResource("1_1lgbu")
 
 [node name="Trigger" type="Area2D" parent="."]
 collision_layer = 0
@@ -224,3 +226,5 @@ deterministic = false
 tree_root = SubResource("AnimationNodeStateMachine_5erxb")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/on_trigger = false
+
+[connection signal="area_entered" from="Trigger" to="." method="_on_trigger_area_entered"]
