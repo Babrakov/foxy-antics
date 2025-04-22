@@ -2,11 +2,20 @@ extends Node2D
 
 const  TRIGGER_CONDITION: String = "parameters/conditions/on_trigger"
 
+@export var lives: int = 2
+@export var points: int = 5
+
 @onready var visual: Node2D = $Visual
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
 
 var _invincible: bool = false
+
+func reduce_lives() -> void:
+	lives -= 1
+	if lives <= 0:
+		SignalManager.on_boss_killed.emit(points)
+		queue_free()
 
 func tween_hit() -> void:
 	var tween = get_tree().create_tween()
@@ -23,7 +32,8 @@ func take_damage() -> void:
 		
 	set_invincible(true)
 	tween_hit()
-
+	reduce_lives() 
+ 
 func _on_trigger_area_entered(area: Area2D) -> void:
 	animation_tree[TRIGGER_CONDITION] = true
 
