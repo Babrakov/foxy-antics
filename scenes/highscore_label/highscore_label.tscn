@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://6m8tuh4mn54f"]
+
+[ext_resource type="FontFile" uid="uid://4mtw76acxrks" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_7n2nr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_35y5p"]
+font = ExtResource("1_7n2nr")
+font_size = 24
+font_color = Color(0.45098, 1, 1, 1)
+outline_size = 2
+outline_color = Color(0.214352, 0.519735, 0.441429, 1)
+shadow_size = 2
+shadow_color = Color(0.309804, 0.337255, 0.54902, 0)
+
+[node name="HighscoreLabel" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0000"
+label_settings = SubResource("LabelSettings_35y5p")
+horizontal_alignment = 1
+vertical_alignment = 1
