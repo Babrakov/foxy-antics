@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdn30cao25hiw"]
+[gd_scene load_steps=7 format=3 uid="uid://bdn30cao25hiw"]
 
 [ext_resource type="Script" path="res://scenes/hud/hud.gd" id="1_g6bjx"]
 [ext_resource type="LabelSettings" uid="uid://c57087kb6t0iv" path="res://assets/LG_white_48.tres" id="1_xm8uw"]
 [ext_resource type="Texture2D" uid="uid://dqw1fky0at4al" path="res://assets/items/pixel heart 2.png" id="2_bblll"]
 [ext_resource type="LabelSettings" uid="uid://b2dyrr3deoxuq" path="res://assets/LG_blue_64.tres" id="3_sihl4"]
 [ext_resource type="LabelSettings" uid="uid://dwoj7dgthifc0" path="res://assets/LG_white_24.tres" id="4_tj22e"]
+[ext_resource type="AudioStream" uid="uid://b72jv2q63x2d7" path="res://assets/sound/game_over.ogg" id="6_evbji"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -132,3 +133,12 @@ text = "Press Jump For Main Menu"
 label_settings = ExtResource("4_tj22e")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_evbji")
+
+[node name="ContinueTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="ContinueTimer" to="." method="_on_continue_timer_timeout"]
