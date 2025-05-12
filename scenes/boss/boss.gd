@@ -11,18 +11,16 @@ const  TRIGGER_CONDITION: String = "parameters/conditions/on_trigger"
 @onready var hit_box: Area2D = $Visual/HitBox
 
 var _invincible: bool = false
-var _tween: Tween
 
 func reduce_lives() -> void:
 	lives -= 1
 	if lives <= 0:
 		SignalManager.on_boss_killed.emit(points)
-		_tween.kill()
 		queue_free()
 
 func tween_hit() -> void:
-	_tween = get_tree().create_tween()
-	_tween.tween_property(visual, "position", Vector2.ZERO, 1.6)
+	var tween = create_tween()
+	tween.tween_property(visual, "position", Vector2.ZERO, 1.6)
 
 func set_invincible(v: bool) -> void:
 	_invincible = v

@@ -21,7 +21,7 @@ func _ready() -> void:
 	SignalManager.on_score_updated.connect(on_score_updated)
 	SignalManager.on_level_complete.connect(on_level_complete)
 
-func _process(_delta: float) -> void:
+func _process(_fdelta: float) -> void:
 	if _can_continue and Input.is_action_just_pressed("jump"):
 		if vb_game_over.visible == true:
 			GameManager.load_main_scene()
