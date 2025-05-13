@@ -18,6 +18,7 @@ const HURT_JUMP_VELOCITY: Vector2 = Vector2(0,-130.0)
 @onready var invincible_player: AnimationPlayer = $InvinciblePlayer
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var sound: AudioStreamPlayer2D = $Sound
+@onready var player_camera: Camera2D = $PlayerCamera
 
 var _state: PlayerState = PlayerState.IDLE
 var _invincible: bool = false
@@ -160,3 +161,9 @@ func _on_hit_box_area_entered(_area: Area2D) -> void:
 
 func _on_hurt_timer_timeout() -> void:
 	set_state(PlayerState.IDLE)
+
+func set_camera_limits(lim_min: Vector2, lim_max: Vector2) -> void:
+	player_camera.limit_bottom = lim_min.y
+	player_camera.limit_left = lim_min.x
+	player_camera.limit_top = lim_max.y
+	player_camera.limit_right = lim_max.x
